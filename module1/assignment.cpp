@@ -1,11 +1,13 @@
-#include "assignment.h"
 #include <string.h>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <istream>
 #include <sstream>
+#include "core_functions.h"
 using namespace std;
+
+const string USERNAME = "chance";
 
 int main(int argc, char *argv[])
 {
@@ -29,12 +31,15 @@ int main(int argc, char *argv[])
   fin.close();
   setenv("username", usernameFromFile, 1);
 
-  if (argc > 0)
+  if (argc > 1)
   {
-    username = argv[0];
+    username = argv[1];
   }
 
   bool validUser = verifyUser(username);
+  setenv("username", &USERNAME[0], 1);
+  validUser = validUser && verifyUser(username);
+
   if (validUser)
   {
     printMessage(username);

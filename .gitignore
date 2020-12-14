@@ -4,5 +4,10 @@
 *.ptx
 *.cubin
 *.fatbin
+*.out
+*.exe
+*.o
+*.so
+*.pyc
 .idea
 .vscode

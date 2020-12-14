@@ -6,7 +6,7 @@ using namespace std;
 
 void printMessage(string text)
 {
-  cout << "Hello" + text << endl;
+  cout << "Hello " + text + "!" << endl;
 }
 
 bool verifyUser(std::string username)
