@@ -4,10 +4,10 @@
 #include <fstream>
 #include <istream>
 #include <sstream>
-#include "core_functions.h"
+#include "core_functions.hpp"
 using namespace std;
 
-const string USERNAME = "chance";
+const string USERNAME = "PLACE USERNAME HERE";
 
 int main(int argc, char *argv[])
 {

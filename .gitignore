@@ -9,5 +9,6 @@
 *.o
 *.so
 *.pyc
+*.exe
 .idea
 .vscode
