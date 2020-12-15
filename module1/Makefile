@@ -11,4 +11,4 @@ clean:
 	rm -f assignment.exe
 
 run:
-	./assignment.exe USERNAME
+	./assignment.exe $(ARGS)

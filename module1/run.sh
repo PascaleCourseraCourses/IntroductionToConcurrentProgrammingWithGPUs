@@ -1,6 +1,9 @@
 make clean build
 
-for i in 1 2
+NUM_RUNS=$1
+USERNAME=$2
+
+for i in $(seq 1 $NUM_RUNS)
 do
-	make run
+	make run ARGS="$USERNAME"
 done
