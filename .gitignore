@@ -12,3 +12,9 @@
 *.exe
 .idea
 .vscode
+
+.DS_Store
+
+*.zip
+
+module1/.user
