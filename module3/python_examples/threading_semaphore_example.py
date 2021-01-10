@@ -2,10 +2,12 @@
 #   Python.org _thread library documentation at
 #   https://docs.python.org/3/library/_thread.html?highlight=_thread#module-_thread
 import logging
-import _thread
+
 import sys
+import time
+
 import pydash as _
-from threading import BoundedSemaphore
+from threading import BoundedSemaphore, Thread, active_count
 
 from module3.python_examples.core import Core, critical_section_acquire_release
 
@@ -34,20 +36,26 @@ class ThreadingSemaphoreExample:
 
     def run(self):
         threads = list()
+        # Need an initial count of threads running in process for future calculation
+        initial_num_threads = active_count()
         for index in range(self.num_threads):
             logging.info("ThreadingSemaphoreExample run    : create and start thread %d.", index)
-            thread = _thread.start_new_thread(function=critical_section_acquire_release,
-                                              args=(index, self.semaphore))
+            thread = Thread(group=None, target=critical_section_acquire_release, args=(index, self.semaphore))
             threads.append(thread)
             thread.start()
 
-        for index, thread in enumerate(threads):
-            logging.info("ThreadingSemaphoreExample run    : before joining thread %d.", index)
-            thread.join()
-            logging.info("ThreadingSemaphoreExample run    : thread %d done", index)
+        while active_count() > initial_num_threads:
+            logging.info("Waiting for no active threads. Number of active threads: %d", active_count() - initial_num_threads)
+            time.sleep(1)
+
+        logging.info("There are no longer any active threads and the program will exit.")
+        # for index, thread in enumerate(threads):
+        #     logging.info("ThreadingSemaphoreExample run    : before joining thread %d.", index)
+        #     thread.join()
+        #     logging.info("ThreadingSemaphoreExample run    : thread %d done", index)
 
 
 if __name__ == "__main__":
     threadingSemaphoreExample = ThreadingSemaphoreExample()
-    threadingSemaphoreExample.parse_args(sys.argv)
+    threadingSemaphoreExample.parse_args(sys.argv[1:])
     threadingSemaphoreExample.run()

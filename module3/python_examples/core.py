@@ -1,5 +1,6 @@
 # Based on RealPython Threading Example page at https://realpython.com/intro-to-python-threading/
 import logging
+import random
 import time
 import argparse
 import pydash as _
@@ -12,9 +13,13 @@ def thread_function(index):
 
 
 def critical_section_acquire_release(name, sync_object):
+    # Add random amount of time for sleep so that execution may be random
+    time.sleep(random.randint(0, 10))
     sync_object.acquire()
+    logging.info("critical_section_acquire_release thread: %d acquired synchronization object.", name)
     thread_function(name)
     sync_object.release()
+    logging.info("critical_section_acquire_release thread: %d released synchronization object.", name)
 
 
 class Core:
