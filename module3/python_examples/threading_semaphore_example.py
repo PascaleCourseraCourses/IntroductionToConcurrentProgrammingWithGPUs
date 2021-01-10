@@ -45,14 +45,11 @@ class ThreadingSemaphoreExample:
             thread.start()
 
         while active_count() > initial_num_threads:
-            logging.info("Waiting for no active threads. Number of active threads: %d", active_count() - initial_num_threads)
+            logging.info("Waiting for no active threads. Number of active threads: %d", active_count() -
+                         initial_num_threads)
             time.sleep(1)
 
         logging.info("There are no longer any active threads and the program will exit.")
-        # for index, thread in enumerate(threads):
-        #     logging.info("ThreadingSemaphoreExample run    : before joining thread %d.", index)
-        #     thread.join()
-        #     logging.info("ThreadingSemaphoreExample run    : thread %d done", index)
 
 
 if __name__ == "__main__":
