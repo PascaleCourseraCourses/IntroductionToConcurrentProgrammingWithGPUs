@@ -25,7 +25,7 @@ class StartNewThreadExample:
         sleeping_time = 0
         for index in range(self.num_threads):
             logging.info("StartNewThreadExample run    : create and start thread %d.", index)
-            _thread.start_new_thread(function=thread_function, args=(index, ))
+            _thread.start_new_thread(thread_function, (index, ))
             sleeping_time += 1
         # sleep for what should be long enough for threads to complete
         time.sleep(sleeping_time)
