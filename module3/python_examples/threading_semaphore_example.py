@@ -9,7 +9,7 @@ import time
 import pydash as _
 from threading import BoundedSemaphore, Thread, active_count
 
-from module3.python_examples.core import Core, critical_section_acquire_release
+from core import Core, critical_section_acquire_release
 
 
 class ThreadingSemaphoreExample:

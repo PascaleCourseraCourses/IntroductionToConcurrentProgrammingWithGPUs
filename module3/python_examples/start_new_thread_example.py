@@ -8,7 +8,7 @@ import time
 
 import pydash as _
 
-from module3.python_examples.core import thread_function, Core
+from core import thread_function, Core
 
 
 class StartNewThreadExample:
