@@ -3,7 +3,6 @@ import logging
 import random
 import time
 import argparse
-import pydash as _
 
 
 def thread_function(index):
@@ -26,7 +25,8 @@ class Core:
 
     def __init__(self, args_list=None):
         self.parser = argparse.ArgumentParser(description='Process command-line arguments')
-        _.for_each(args_list, self.add_arg_parser_argument)
+        for arg in args_list:
+            self.add_arg_parser_argument(arg)
 
     def parse_args(self, args) -> argparse.Namespace:
         return self.parser.parse_args(args)
